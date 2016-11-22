@@ -202,19 +202,33 @@ let lea = [
 
 let typeOfEyes = "lizardEyes";
 
-let animation = cpArr(lea)
-                    
-let reverse = [];
+let animation = cpArr(lea);
+
+let animationIndex = 0;
+let positiveDirection = true;
+let lastBmp = [];
+
+function updateIndex() {
+    if (positiveDirection) {
+        animationIndex++;
+    } else {
+        animationIndex--;
+    }
+}               
 
 export const animate = matrix => {
     setInterval(function () {
-        const bmp = animation.shift();
-        reverse.unshift(bmp);
+        const bmp = animation[animationIndex];
+        
         matrix.render(bmp);
-        if (animation.length === 0) {
-            animation = reverse;
-            reverse = [];
+        
+        lastBmp = bmp;
+        
+        updateIndex();
+
+        if (animationIndex === animation.length || animationIndex < 0) {
+            positiveDirection = !positiveDirection;
+            updateIndex();
         }
     }, 50);
-}
-
+};

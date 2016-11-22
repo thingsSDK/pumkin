@@ -4,14 +4,15 @@
   "private": true,
   "main": "main.js",
   "scripts": {
-    "push": "node ./scripts/push && npm run repl",
+    "dev": "node ./scripts/upload development && npm run repl",
+    "deploy": "node ./scripts/upload production",
     "repl": "node ./scripts/repl"
   },
   "devDependencies": {
-    "thingssdk-deployer": "github:thingssdk/thingssdk-deployer",
-    "thingssdk-espruino-strategy": "github:thingssdk/thingssdk-espruino-strategy"
+    "thingssdk-deployer": "1.0.0",
+    "thingssdk-espruino-strategy": "1.0.0"
   },
   "engines": {
-    "espruino": "1.86"
+    "espruino": "1.85"
   }
 }
