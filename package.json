@@ -9,10 +9,13 @@
     "repl": "node ./scripts/repl"
   },
   "devDependencies": {
-    "thingssdk-deployer": "1.0.0",
-    "thingssdk-espruino-strategy": "1.0.0"
+    "thingssdk-deployer": "~1.0.0",
+    "thingssdk-espruino-strategy": "~1.0.1"
   },
   "engines": {
     "espruino": "1.85"
+  },
+  "dependencies": {
+    "thingssdk-adafruit-matrix": "github:thingssdk/thingssdk-adafruit-matrix"
   }
 }

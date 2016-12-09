@@ -1,3 +1,8 @@
+const COLOR_GREEN  = 0;
+const COLOR_RED    = 1;
+const COLOR_YELLOW = 2;
+let colorCycle = 0;
+
 const cpArr = from => {
     return from.map(bmp => bmp.map(line => line));
 }
@@ -216,11 +221,29 @@ function updateIndex() {
     }
 }               
 
+function linefor(line) {
+    let newLine;
+    switch (colorCycle) {
+        case COLOR_GREEN:
+            newLine = [line, 0];
+            break;
+        case COLOR_RED:
+            newLine = [0, line];
+            break;
+        case COLOR_YELLOW:
+            newLine = [line, line];
+            break;
+    }
+    colorCycle += 1;
+    if(colorCycle > 2) colorCycle = 0;
+    return newLine;
+}
+
 export const animate = matrix => {
     setInterval(function () {
         const bmp = animation[animationIndex];
-        
-        matrix.render(bmp);
+        const multiColorBmp = bmp.map(line => linefor(line));
+        matrix.render(multiColorBmp);
         
         lastBmp = bmp;
         
